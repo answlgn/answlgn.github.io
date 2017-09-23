@@ -77,7 +77,7 @@
         document.getElementById(volume_label_id[i]).innerHTML = 'Volume:  ' + vol + 'dB';
     }
     var kick = new XMLHttpRequest();
-    kick.open("Get","./kick.mp3",true);   //  <---- replace this file with yours
+    kick.open("Get","./kick2.mp3",true);   //  <---- replace this file with yours
     kick.responseType = "arraybuffer";
     kick.onload = function(){
         context.decodeAudioData(kick.response, function(buffer){buffers[0] = buffer;});
