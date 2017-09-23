@@ -108,7 +108,8 @@
     function playdrum(i) {
         source = context.createBufferSource();
   	    source.buffer = buffers[i];
-  	    source.connect(context.destination);
+        source.connect(gain_nodes[i]);
+        gain_nodes[i].connect(context.destination);
   	    source.start();
     }
     function changegain(i,changedvalue){
