@@ -1,0 +1,384 @@
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title> Beatbox</title>
+</head>
+
+<style>
+    button {
+        padding: 5px;
+        background: rgb(150,180, 235);
+        border: 1px solid rgb(122, 122, 122);
+        border-radius: 20px;
+        outline: none;
+        width:120px;
+        height:120px;
+        font-size:15px
+    }
+    button.active, button:active {
+        background: rgb(85, 100, 122);
+        border: 1px solid rgb(0,0,0);
+        box-shadow: 0 0 2px 0 rgb(0,0,0);
+    }
+    button2 {
+        padding: 5px;
+        background: rgb(200, 200, 200);
+        border: 1px solid rgb(122, 122, 122);
+        border-radius: 2px;
+        outline: none;
+        width:40px;
+        height:10px;
+        font-size:15px
+    }
+    button2.active, button2:active {
+        background: rgb(100, 100, 100);
+        border: 1px solid rgb(0,0,0);
+        box-shadow: 0 0 2px 0 rgb(0,0,0);
+    }
+    div#kick{
+        width:130px;
+        height:600px;
+        float:left;
+    }
+    #snare{
+        width:130px;
+        height:600px;
+        float:left;
+    }
+    #hihat{
+        width:130px;
+        height:600px;
+        float:left;
+    }
+    #crash{
+        width:130px;
+        height:600px;
+        float:left;
+    }
+    #tom1{
+        width:130px;
+        height:600px;
+        float:left;
+    }
+    #tom2{
+        width:130px;
+        height:600px;
+        float:left;
+    }
+    #tom3{
+        width:130px;
+        height:600px;
+        float:left;
+    }
+    #tom4{
+        width:130px;
+        height:600px;
+        float:left;
+    }
+    input.volume {
+        width:120px;
+        height:10px;
+    }
+</style>
+
+<body>
+
+<h1> Homework#1: Beatbox </h1>
+<h2> Load and Play Your Local Audio File. Play the Drum with It!</h2>
+<input id="fileChooseInput" type="file"></input>
+<br>
+<div id = "file" align = "center">
+     <button2 onclick="playSound(myAudioBuffer2)" >Play</button2>
+     <button2 onclick="stopSound()" >Stop</button2>
+     <p id="fileVolLabel"></p>
+     <input class="volume" onchange="changegain(8,this.value)" id="fileVol" title="File volume" type="range" min="-24" max ="0" value = "-12">
+
+</div>
+</br>
+<br>
+</br>
+<br>
+<div id = "kick" align = "center">
+    <button id="kickPad" onmousedown="playdrum(0)" > Kick ('m' key)</button>
+    <p id="kickVolLabel"></p>
+    <input class="volume" onchange="changegain(0,this.value)" id="kickVol" title="Kick volume" type="range" min="-24" max ="0" value = "-12">
+</div>
+<div id = "snare" align = "center">
+    <button id="snarePad" onmousedown="playdrum(1)" > Snare ('l' key)</button>
+    <p id="snareVolLabel"></p>
+    <input class="volume" onchange="changegain(1,this.value)" id="snareVol" title="Snare volume" type="range" min="-24" max ="0" value = "-12">
+</div>
+<div id = "hihat" align = "center">
+    <button id="hihatPad" onmousedown="playdrum(2)"> Hihat ('a' key)</button>
+    <p id="hihatVolLabel"></p>
+    <input class="volume" onchange="changegain(2,this.value)" id="hihatVol" title="Hihat volume" type="range" min="-24" max ="0" value = "-12">
+</div>
+<div id = "crash" align = "center">
+    <button id="crashPad" onmousedown="playdrum(3)" > Crash ('e' key)</button>
+    <p id="crashVolLabel"></p>
+    <input class="volume" onchange="changegain(3,this.value)" id="crashVol" title="Crash volume" type="range" min="-24" max ="0" value = "-12">
+</div>
+<div id = "tom1" align = "center">
+    <button id="tom1Pad" onmousedown="playdrum(4)" > Tom1 ('y' key)</button>
+    <p id="tom1VolLabel"></p>
+    <input class="volume" onchange="changegain(4,this.value)" id="tom1Vol" title="Tom1 volume" type="range" min="-24" max ="0" value = "-12">
+</div>
+<div id = "tom2" align = "center">
+    <button id="tom2Pad" onmousedown="playdrum(5)"> Tom2 ('u' key)</button>
+    <p id="tom2VolLabel"></p>
+    <input class="volume" onchange="changegain(5,this.value)" id="tom2Vol" title="Tom2 volume" type="range" min="-24" max ="0" value = "-12">
+</div>
+<div id = "tom3" align = "center">
+    <button id="tom3Pad" onmousedown="playdrum(6)" > Tom3 ('i' key)</button>
+    <p id="tom3VolLabel"></p>
+    <input class="volume" onchange="changegain(6,this.value)" id="tom3Vol" title="Tom3 volume" type="range" min="-24" max ="0" value = "-12">
+</div>
+<div id = "tom4" align = "center">
+    <button id="tom4Pad" onmousedown="playdrum(7)"> Tom4 ('o' key)</button>
+    <p id="tom4VolLabel"></p>
+    <input class="volume" onchange="changegain(7,this.value)" id="tom4Vol" title="Tom4 volume" type="range" min="-24" max ="0" value = "-12">
+</div>
+
+<script>
+
+    var context = new (window.AudioContext || window.webkitAudioContext)();
+    var buffers = new Array(8); // 0 : kick, 1 : snare, 2 : hihat
+    var volume_id = new Array("kickVol","snareVol","hihatVol","crashVol","tom1Vol","tom2Vol","tom3Vol","tom4Vol","fileVol");
+    var volume_label_id = new Array("kickVolLabel","snareVolLabel","hihatVolLabel","crashVolLabel","tom1VolLabel","tom2VolLabel","tom3VolLabel","tom4VolLabel","fileVolLabel");
+    var gain_nodes = new Array(9);
+    for (i  = 0; i < 9; i++) {
+        gain_nodes[i] = context.createGain();
+        var vol = document.getElementById(volume_id[i]).value;
+        gain_nodes[i].gain.value = db2gain(vol);
+        document.getElementById(volume_label_id[i]).innerHTML = 'Volume:  ' + vol + 'dB';
+    }
+    var kick = new XMLHttpRequest();
+    kick.open("Get","./kick2.mp3",true);
+    kick.responseType = "arraybuffer";
+    kick.onload = function(){
+        context.decodeAudioData(kick.response, function(buffer){buffers[0] = buffer;});
+    }
+    kick.send();
+    var snare = new XMLHttpRequest();
+    snare.open("Get","./snare.mp3",true);
+    snare.responseType = "arraybuffer";
+    snare.onload = function(){
+        context.decodeAudioData(snare.response, function(buffer){buffers[1] = buffer;});
+    }
+    snare.send();
+    var hihat = new XMLHttpRequest();
+    hihat.open("Get","./hihat.mp3",true);
+    hihat.responseType = "arraybuffer";
+    hihat.onload = function(){
+        context.decodeAudioData(hihat.response, function(buffer){buffers[2] = buffer;});
+    }
+    hihat.send();
+    var crash = new XMLHttpRequest();
+    crash.open("Get","./crash.mp3",true);
+    crash.responseType = "arraybuffer";
+    crash.onload = function(){
+        context.decodeAudioData(crash.response, function(buffer){buffers[3] = buffer;});
+    }
+    crash.send();
+    var tom1 = new XMLHttpRequest();
+    tom1.open("Get","./tom1.mp3",true);
+    tom1.responseType = "arraybuffer";
+    tom1.onload = function(){
+        context.decodeAudioData(tom1.response, function(buffer){buffers[4] = buffer;});
+    }
+    tom1.send();
+    var tom2 = new XMLHttpRequest();
+    tom2.open("Get","./tom2.mp3",true);
+    tom2.responseType = "arraybuffer";
+    tom2.onload = function(){
+        context.decodeAudioData(tom2.response, function(buffer){buffers[5] = buffer;});
+    }
+    tom2.send();
+    var tom3 = new XMLHttpRequest();
+    tom3.open("Get","./tom3.mp3",true);
+    tom3.responseType = "arraybuffer";
+    tom3.onload = function(){
+        context.decodeAudioData(tom3.response, function(buffer){buffers[6] = buffer;});
+    }
+    tom3.send();
+    var tom4 = new XMLHttpRequest();
+    tom4.open("Get","./tom4.mp3",true);
+    tom4.responseType = "arraybuffer";
+    tom4.onload = function(){
+        context.decodeAudioData(tom4.response, function(buffer){buffers[7] = buffer;});
+    }
+    tom4.send();
+
+
+
+
+    window.onload=function(){
+        window.addEventListener('keydown', function (key) {
+            keyboardDown(key);
+        }, false);
+        window.addEventListener('keyup', function (key) {
+            keyboardUp(key);
+        }, false);
+    }
+    function playdrum(i) {
+         source = context.createBufferSource();
+         source.buffer = buffers[i];
+         source.connect(gain_nodes[i]);
+         gain_nodes[i].connect(context.destination);
+         source.start();
+    }
+    function changegain(i,changedvalue){
+        gain_nodes[i].gain.value = db2gain(changedvalue);
+        document.getElementById(volume_label_id[i]).innerHTML = 'Volume:  ' + changedvalue + 'dB';
+    }
+    function db2gain(db_gain) {
+        var gain = 1.0;
+        gain = 10 ** (db_gain/20);
+        return gain
+    }
+    // keyboard mapping
+    function keyboardDown(key) {
+        switch (key.keyCode) {
+            case 77: //'m'
+                var kickpad = document.getElementById("kickPad");
+                kickpad.className = 'active';
+                simulateClick(kickpad);
+                break;
+            case 76: //'l'
+                var snarepad = document.getElementById("snarePad");
+                snarepad.className = 'active';
+                simulateClick(snarepad);
+                break;
+            case 65: //'a'
+                var hihatpad = document.getElementById("hihatPad");
+                hihatpad.className = 'active';
+                simulateClick(hihatpad);
+                break;
+            case 69: //'e'
+                var crashpad = document.getElementById("crashPad");
+                crashpad.className = 'active';
+                simulateClick(crashpad);
+                break;
+            case 89: //'y'
+                var tom1pad = document.getElementById("tom1Pad");
+                tom1pad.className = 'active';
+                simulateClick(tom1pad);
+                break;
+            case 85: //'u'
+                var tom2pad = document.getElementById("tom2Pad");
+                tom2pad.className = 'active';
+                simulateClick(tom2pad);
+                break;
+            case 73: //'i'
+                var tom3pad = document.getElementById("tom3Pad");
+                tom3pad.className = 'active';
+                simulateClick(tom3pad);
+                break;
+            case 79: //'o'
+                var tom4pad = document.getElementById("tom4Pad");
+                tom4pad.className = 'active';
+                simulateClick(tom4pad);
+                break;
+        }
+    }
+    function keyboardUp(key) {
+        switch (key.keyCode) {
+            case 77: //'m'
+                var kickpad = document.getElementById("kickPad");
+                kickpad.className = '';
+                break;
+            case 76: //'l'
+                var snarepad = document.getElementById("snarePad");
+                snarepad.className = '';
+                break;
+            case 65: //'a'
+                var hihatpad = document.getElementById("hihatPad");
+                hihatpad.className = '';
+                break;
+            case 69: //'e'
+                var crashpad = document.getElementById("crashPad");
+                crashpad.className = '';
+                break;
+            case 89: //'y'
+                var tom1pad = document.getElementById("tom1Pad");
+                tom1pad.className = '';
+                break;
+            case 85: //'u'
+                var tom2pad = document.getElementById("tom2Pad");
+                tom2pad.className = '';
+                break;
+            case 73: //'i'
+                var tom3pad = document.getElementById("tom3Pad");
+                tom3pad.className = '';
+                break;
+            case 79: //'o'
+                var tom4pad = document.getElementById("tom4Pad");
+                tom4pad.className = '';
+                break;
+        }
+    }
+    // simulated mousedown on buttons
+    function simulateClick(element) {
+        var event = new MouseEvent("mousedown", {
+            bubbles: true,
+            cancelable: true,
+            view: window
+        });
+        element.dispatchEvent(event);
+    }
+    // Audio Loading
+    var context2;
+    var myAudioBuffer2 = null;
+
+    // initialization
+    window.onload=function(){
+       var control = document.getElementById("fileChooseInput");
+       control.addEventListener("change", fileChanged, false);
+       window.addEventListener('keydown', function (key) {
+           keyboardDown(key);
+       }, false);
+
+       window.addEventListener('keyup', function (key) {
+           keyboardUp(key);
+       }, false);
+       window.AudioContext = window.AudioContext || window.webkitAudioContext;
+       context2 = new AudioContext();
+    }
+
+    //
+    function fileChanged(e){
+       var file = e.target.files[0];
+       var fileReader = new FileReader();
+       fileReader.onload = fileLoaded;
+       fileReader.readAsArrayBuffer(file);
+    }
+
+    function fileLoaded(e){
+        context.decodeAudioData(e.target.result, function(buffer) {
+          myAudioBuffer2 = buffer;
+        });
+        console.log("File has been loaded.")
+    }
+
+    var source2 = null;
+
+    function playSound(anybuffer) {
+       source2 = context.createBufferSource();
+       source2.buffer = anybuffer;
+       source2.connect(gain_nodes[8]);
+       gain_nodes[8].connect(context.destination);
+       source2.start();
+    }
+    function stopSound() {
+       if (source2) {
+         source2.stop();
+       }
+    }
+
+</script>
+</body>
+
+</html>
