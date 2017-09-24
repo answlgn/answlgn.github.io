@@ -10,15 +10,30 @@
 <style>
     button {
         padding: 5px;
-        background: rgb(200, 200, 200);
+        background: rgb(150,180, 235);
         border: 1px solid rgb(122, 122, 122);
-        border-radius: 2px;
+        border-radius: 20px;
         outline: none;
         width:120px;
         height:120px;
         font-size:15px
     }
     button.active, button:active {
+        background: rgb(85, 100, 122);
+        border: 1px solid rgb(0,0,0);
+        box-shadow: 0 0 2px 0 rgb(0,0,0);
+    }
+    button2 {
+        padding: 5px;
+        background: rgb(200, 200, 200);
+        border: 1px solid rgb(122, 122, 122);
+        border-radius: 2px;
+        outline: none;
+        width:40px;
+        height:10px;
+        font-size:15px
+    }
+    button2.active, button2:active {
         background: rgb(100, 100, 100);
         border: 1px solid rgb(0,0,0);
         box-shadow: 0 0 2px 0 rgb(0,0,0);
@@ -72,6 +87,19 @@
 <body>
 
 <h1> Homework#1: Beatbox </h1>
+<h2> Load and Play Your Local Audio File. Play the Drum with It!</h2>
+<input id="fileChooseInput" type="file"></input>
+<br>
+<div id = "file" align = "center">
+     <button2 onclick="playSound(myAudioBuffer2)" >Play</button2>
+     <button2 onclick="stopSound()" >Stop</button2>
+     <p id="fileVolLabel"></p>
+     <input class="volume" onchange="changegain(8,this.value)" id="fileVol" title="File volume" type="range" min="-24" max ="0" value = "-12">
+
+</div>
+</br>
+<br>
+</br>
 <br>
 <div id = "kick" align = "center">
     <button id="kickPad" onmousedown="playdrum(0)" > Kick ('m' key)</button>
@@ -115,12 +143,13 @@
 </div>
 
 <script>
+
     var context = new (window.AudioContext || window.webkitAudioContext)();
     var buffers = new Array(8); // 0 : kick, 1 : snare, 2 : hihat
-    var volume_id = new Array("kickVol","snareVol","hihatVol","crashVol","tom1Vol","tom2Vol","tom3Vol","tom4Vol");
-    var volume_label_id = new Array("kickVolLabel","snareVolLabel","hihatVolLabel","crashVolLabel","tom1VolLabel","tom2VolLabel","tom3VolLabel","tom4VolLabel");
-    var gain_nodes = new Array(8);
-    for (i  = 0; i < 8; i++) {
+    var volume_id = new Array("kickVol","snareVol","hihatVol","crashVol","tom1Vol","tom2Vol","tom3Vol","tom4Vol","fileVol");
+    var volume_label_id = new Array("kickVolLabel","snareVolLabel","hihatVolLabel","crashVolLabel","tom1VolLabel","tom2VolLabel","tom3VolLabel","tom4VolLabel","fileVolLabel");
+    var gain_nodes = new Array(9);
+    for (i  = 0; i < 9; i++) {
         gain_nodes[i] = context.createGain();
         var vol = document.getElementById(volume_id[i]).value;
         gain_nodes[i].gain.value = db2gain(vol);
@@ -182,6 +211,7 @@
         context.decodeAudioData(tom4.response, function(buffer){buffers[7] = buffer;});
     }
     tom4.send();
+
 
 
 
@@ -299,6 +329,49 @@
         });
         element.dispatchEvent(event);
     }
+    // Audio Loading
+    var context2;
+    var myAudioBuffer2 = null;
+
+    // initialization
+    window.onload=function(){
+       var control = document.getElementById("fileChooseInput");
+       control.addEventListener("change", fileChanged, false);
+
+       window.AudioContext = window.AudioContext || window.webkitAudioContext;
+       context2 = new AudioContext();
+    }
+
+    //
+    function fileChanged(e){
+       var file = e.target.files[0];
+       var fileReader = new FileReader();
+       fileReader.onload = fileLoaded;
+       fileReader.readAsArrayBuffer(file);
+    }
+
+    function fileLoaded(e){
+        context.decodeAudioData(e.target.result, function(buffer) {
+          myAudioBuffer2 = buffer;
+        });
+        console.log("File has been loaded.")
+    }
+
+    var source2 = null;
+
+    function playSound(anybuffer) {
+       source2 = context.createBufferSource();
+       source2.buffer = anybuffer;
+       source2.connect(gain_nodes[8]);
+       gain_nodes[8].connect(context.destination);
+       source2.start();
+    }
+    function stopSound() {
+       if (source2) {
+         source2.stop();
+       }
+    }
+
 </script>
 </body>
 
