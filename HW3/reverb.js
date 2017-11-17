@@ -9,7 +9,7 @@ var Reverb = function(context, parameters) {
 	this.ir.responseType = "arraybuffer";
 
 	this.ir.onload = function() {
-		this.buffer = this.ir.response;
+	this.buffer = this.ir.response;
   	this.audioData = context.decodeAudioData(this.buffer, function(buffer) {
       this.result = buffer;
       this.soundSource = context.createBufferSource();
