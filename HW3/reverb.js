@@ -7,10 +7,10 @@ var Reverb = function(context, parameters) {
 	this.ir = new XMLHttpRequest();
 	this.ir.open("Get","ir.wav",true);
 	this.ir.responseType = "arraybuffer";
+	var bf = this.ir;
 
-
-	this.ir.onload = function() {
-  	context.decodeAudioData(this.ir.response, function(buffer) {
+	bf.onload = function() {
+  	context.decodeAudioData(bf.response, function(buffer) {
       this.reverbNode.buffer = buffer;
     	});
 	};
