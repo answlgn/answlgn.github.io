@@ -1,0 +1,95 @@
+<html>
+<head>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link href='https://fonts.googleapis.com/css?family=Alegreya SC' rel='stylesheet'>
+	<link  href="slider.css" rel='stylesheet'>
+
+</head>
+
+<style>
+
+
+.footer {
+		position: fixed;
+		bottom:2%;
+    text-align: right;
+    padding: 20px;
+}
+body {
+	background-image: url('back.jpg');
+	background-repeat: no-repeat;
+	background-position: right top;
+	background-attachment: fixed;
+}
+i {
+	position: fixed;
+	left: 2%;
+	color : white;
+	background: black;
+	opacity:0.7;
+}
+h2{
+    font-family: 'Alegreya SC';font-size: 22px;
+		color : Darkred;
+}
+p {
+    font-family: "Courier New", Times, Monospace;
+		color:white;
+}
+slidertext {
+    font-family: 'Alegreya SC';font-size: 22px;
+		color:white;
+		font-size:25px;
+}
+ul {
+    display: inline;
+    margin: 0;
+    padding: 0;
+
+
+}
+ul li {display: inline-block; }
+ul li:hover {background: black; opacity:0.8;}
+ul li:hover ul {display: block; background:black; opacity:0.9;}
+ul li ul {
+    position:fixed;
+    width: 600px;
+		height: 400px;
+    display: none;
+	 left:2%;
+	 bottom:38px;
+}
+
+
+</style>
+
+<body>
+<script src="slider.js"></script>
+<h2>Merry Christmas!</h2>
+
+<p>By default the background image will repeat itself if it is smaller than the element where it is specified, in this case the BODY element.</p>
+
+
+
+<div class = "footer">
+
+	  <ul>
+	    <li>
+	      <i  onclick="myFunction()" class="material-icons" style="font-size:24px;">tune</i>
+	      <ul>
+					<div id="slidecontainer">
+						<slidertext style="color:Darkred;">Bell
+					  <input type="range" min="1" max="100" value="50" class="slider" id="Bell"></input></slidertext>
+						<slidertext style="color:darkgoldenrod;">People
+						<input type="range" min="1" max="100" value="50" class="slider" id="People"></input></slidertext>
+						<slidertext style="color:azure;">Snow
+						<input type="range" min="1" max="100" value="50" class="slider" id="Snow"></input></slidertext>
+						<slidertext style="color:royalblue;">Fireworks
+						<input type="range" min="1" max="100" value="50" class="slider" id="Fireworks"></input></slidertext>
+						<slidertext style="color:MediumSeaGreen;">Carol
+						<input type="range" min="1" max="100" value="50" class="slider" id="Carol"></input></slidertext>
+					</div>
+
+
+</body>
+</html>
