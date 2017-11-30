@@ -8,8 +8,8 @@
 
 <style>
 
-::-webkit-scrollbar { 
-    display: none; 
+::-webkit-scrollbar {
+    display: none;
 }
 .footer {
 		position: fixed;
@@ -81,31 +81,36 @@ ul li ul {
 
 <body>
 <div class="bg"></div>
-
+<script src="play.js"></script>
 <script src="slider.js"></script>
 <h2>Merry Christmas!</h2>
 
 <p>By default the background image will repeat itself if it is smaller than the element where it is specified, in this case the BODY element.</p>
 
-
+<element onload="playall()">
 
 <div class = "footer">
 
 	  <ul>
 	    <li>
-	      <i  onclick="myFunction()" class="material-icons" style="font-size:24px;">tune</i>
+	      <i  class="material-icons" style="font-size:24px;">tune</i>
 	      <ul>
 					<div id="slidecontainer">
 						<slidertext style="color:Darkred;">Bell
-					  <input type="range" min="1" max="100" value="50" class="slider" id="Bell"></input></slidertext>
+					  <input type="range" onchange="changegain(0,this.value)" min="-24" max="0" value="-20" class="slider" id="BellCtrl"></input></slidertext>
+
 						<slidertext style="color:darkgoldenrod;">People
-						<input type="range" min="1" max="100" value="50" class="slider" id="People"></input></slidertext>
+						<input type="range" onchange="changegain(1,this.value)"min="-24" max="0" value="-20" class="slider" id="PeopleCtrl"></input></slidertext>
+
 						<slidertext style="color:azure;">Snow
-						<input type="range" min="1" max="100" value="50" class="slider" id="Snow"></input></slidertext>
+						<input type="range" onchange="changegain(2,this.value)" min="-24" max="0" value="-20" class="slider" id="SnowCtrl"></input></slidertext>
+
 						<slidertext style="color:royalblue;">Fireworks
-						<input type="range" min="1" max="100" value="50" class="slider" id="Fireworks"></input></slidertext>
+						<input type="range" onchange="changegain(3,this.value)" min="-24" max="0" value="-20" class="slider" id="FireworksCtrl"></input></slidertext>
+
 						<slidertext style="color:MediumSeaGreen;">Carol
-						<input type="range" min="1" max="100" value="50" class="slider" id="Carol"></input></slidertext>
+						<input type="range" onchange="changegain(4,this.value)" min="-24" max="0" value="-20" class="slider" id="CarolCtrl"></input></slidertext>
+
 					</div>
 
 
