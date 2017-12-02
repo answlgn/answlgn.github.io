@@ -1,0 +1,32 @@
+
+a {
+	color: #2fa1d6;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #fff;
+}
+
+#canvas-container {
+	background: none;
+  height:35%;
+	left: 0px;
+	margin: 0 0 0 0;
+	position: fixed;
+	top: 0%;
+  width: 100%;
+	z-index: 2;
+}
+
+canvas {
+	cursor: crosshair;
+	display: block;
+	position: relative;
+	z-index: 3;
+}
+
+canvas:active {
+	cursor: crosshair;
+}
