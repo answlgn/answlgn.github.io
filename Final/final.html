@@ -60,7 +60,7 @@ p {
 slidertext {
     font-family: 'Alegreya SC';font-size: 22px;
 		color:white;
-		font-size:25px;
+		font-size:15px;
 }
 ul {
     display: inline;
@@ -74,11 +74,12 @@ ul li:hover {background: black; opacity:0.8;}
 ul li:hover ul {display: block; background:black; opacity:0.9;}
 ul li ul {
     position:fixed;
-    width: 600px;
-		height: 460px;
+    width: 400px;
+		height: 280px;
     display: none;
 	 left:2%;
-	 bottom:34px;
+	 bottom: 34px;
+	 z-index:100;
 }
 
 
@@ -91,6 +92,8 @@ ul li ul {
 
 
 <h2>Merry Christmas!</h2>
+
+
 <div id="snow">
 </div>
 
@@ -122,8 +125,8 @@ var Fireworks = function(){
 			return false;
 		};
 
-		self.canvas.width = self.cw = 1920;
-		self.canvas.height = self.ch = 400;
+		self.canvas.width = self.cw = window.innerWidth;
+		self.canvas.height = self.ch = 0.5*window.innerHeight;
 
 		self.particles = [];
 		self.partCount = Math.floor((Math.random() * 100) + 300);;
@@ -707,6 +710,7 @@ gui.remember(fworks);
 
 </script>
 
+
 <div class = "footer">
 
 	  <ul>
@@ -714,33 +718,50 @@ gui.remember(fworks);
 	      <i  class="material-icons" style="font-size:24px;">tune</i>
 	      <ul>
 					<div id="slidecontainer">
+						<div>
 						<slidertext style="color:Darkred;">Bell
 					  <input type="range" onchange="changegain(0,this.value)" min="0" max="100" value="15" class="slider" id="BellCtrl"></input></slidertext>
-
+						</div>
 						<slidertext style="color:darkgoldenrod;">Crowd
 						<input type="range" onchange="changegain(1,this.value)" min="0" max="100" value="10" class="slider" id="CrowdCtrl"></input></slidertext>
-
+						<div>
 						<slidertext style="color:azure;">Bonfire
 						<input type="range" onchange="changegain(2,this.value)"  min="0" max="100" value="20" class="slider" id="BonfireCtrl"></input></slidertext>
-
+						</div>
 						<slidertext style="color:royalblue;">Fireworks
 						<input type="range" onchange="changegain(3,this.value)" min="0" max="100" value="25" class="slider" id="FireworksCtrl"></input></slidertext>
-
+						<div>
 						<slidertext style="color:MediumSeaGreen;">Chant
 						<input type="range" onchange="changegain(4,this.value)"  min="0" max="100" value="70"  class="slider" id="ChantCtrl"></input></slidertext>
-
+						</div>
+						<div>
 						<slidertext style="color:White;">Carol
 						<input type="range" onchange="changegain(5,this.value)"  min="0" max="100" value="20"  class="slider" id="CarolCtrl"></input></slidertext>
-</div></div>
-<div style = "position : absolute; top:100%; z-index : 40;">
-<p>This is a Background Noise Customizer with christmas theme!<p>
-	<ul>
-		<li>
-			<p>Reference</p>
-			<ul>
-				<p>hi</p>
-
+						</div>
+					</div>
 </div>
 
+<div style = "position : absolute; top:100%; z-index : 40;" >
+<p>This is a Background Noise Customizer with christmas theme. <br> Put mouse over the control button right above. Customize your own ASMR!<p>
+	<ul>
+		<li>
+			<p >[See Reference]</p>
+			<ul>
+				<p style = "font-size: 14px">Audio sources<br><br>
+   &nbsp;&nbsp; http://www.salamisound.com/<br>
+   &nbsp;&nbsp; http://gregorianchant.altervista.org/<br>
+Image sources<br>
+   &nbsp;&nbsp; https://wall.alphacoders.com/
+<br><br>
+Some codes are from
+<br>
+   &nbsp;&nbsp; https://codepen.io/NickyCDK/pen/AIonk?q=snow&limit=all&type=type-pens
+<br>   &nbsp;&nbsp; https://codepen.io/jackrugile/pen/acAgx?q=firework&order=popularity&depth=everything&show_forks=false
+<br>
+<br><br>
+Merry Christmas!</p>
+
+
+</div>
 </body>
 </html>
