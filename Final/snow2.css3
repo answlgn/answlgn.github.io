@@ -1,0 +1,44 @@
+body { background-color:#333; }
+#snow{
+	background: none;
+	font-family: Androgyne;
+	background-image: url('http://www.wearewebstars.dk/codepen/img/s1.png'), url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index:0;
+	-webkit-animation: snow 25s linear infinite;
+	-moz-animation: snow 25s linear infinite;
+	-ms-animation: snow 25s linear infinite;
+	animation: snow 25s linear infinite;
+}
+@keyframes snow {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  25% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  50% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+  75% {background-position: 1000px 1500px, 300px 600px, -200px 450px;}
+  100% {background-position: 1000px 2000px, 400px 800px, -300px 600px;}
+}
+@-moz-keyframes snow {
+0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+25% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+50% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+75% {background-position: 1000px 1500px, 300px 500px, -200px 450px;}
+100% {background-position: 1000px 2000px, 400px 800px, -300px 600px;}
+}
+@-webkit-keyframes snow {
+0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+25% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+50% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+75% {background-position: 1000px 1500px, 300px 500px, -200px 450px;}
+100% {background-position: 1000px 2000px, 400px 800px, -300px 600px;}
+}
+@-ms-keyframes snow {
+0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+25% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+50% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+75% {background-position: 1000px 1500px, 300px 500px, -200px 450px;}
+100% {background-position: 1000px 2000px, 400px 600px, -300px 600px;}
+}
