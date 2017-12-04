@@ -54,9 +54,7 @@ h2{
     font-family: 'Alegreya SC';font-size: 22px;
 		color : Darkred;
 }
-p {
-    font-family: "Courier New", Times, Monospace;
-		color:white;
+
 }
 slidertext {
     font-family: 'Alegreya SC';font-size: 22px;
@@ -76,10 +74,10 @@ ul li:hover ul {display: block; background:black; opacity:0.9;}
 ul li ul {
     position:fixed;
     width: 400px;
-		height: 280px;
+		height: 230px;
     display: none;
 	 left:2%;
-	 bottom: 34px;
+	 bottom: 36px;
 	 z-index:100;
 }
 
@@ -91,6 +89,87 @@ ul li ul {
 
 
 
+<canvas id='star' style = "position : absolute; top:0%; height:50%;width:100%;z-index:3;"></canvas>
+
+
+<div id="canvas-container">
+
+</div>
+
+<script> // star maker
+
+var STAR_COLOURS = ["#ffffff", "#ffe9c4", "#d4fbff"]; // because not all stars are white
+HEIGHT = 0.5 * window.innerHeight; // height of the canvas
+WIDTH = window.innerWidth; // width of the canvas
+
+/**
+ * Generate a random integer between min and max
+ */
+function random (min, max) {
+  return Math.round((Math.random() * max - min) + min);
+}
+
+/**
+ * Generate a new star field with star_number stars and draw
+ * it onto the provided canvas context
+ */
+function star_field (context, e) {
+  var x, // x position of the star
+      y, // y position of the star
+      brightness, // brightness of the star
+      radius; // radius of the star
+
+  // draw the blank night sky
+
+
+
+  // save the previous canvas context state
+  context.save();
+  x = e.pageX; // random x position
+  y = e.pageY; // random y position
+  radius = Math.random() * 1.1; // random radius
+  brightness = random(80, 100) / 100;
+
+  // start drawing the star
+  context.beginPath();
+  // set the brightness of the star
+  context.globalAlpha = brightness;
+    // choose a random star colour
+  context.fillStyle = STAR_COLOURS[random(0, STAR_COLOURS.length)];
+  // draw the star (an arc of radius 2 * pi)
+  context.arc(x, y, radius, 0, Math.PI * 2, true);
+  // fill the star and stop drawing it
+  context.fill();
+  context.closePath();
+
+
+
+}
+
+/**
+ * Kick everything off
+ */
+function init () {
+  // find the canvas and create its context
+	var topcanvas = document.getElementById('canvas-container');
+  var canvas = document.getElementById('star'),
+      context = canvas.getContext('2d');
+			canvas.width = WIDTH;
+		  canvas.height = HEIGHT;
+  // create a new star field when you click on the canvas
+  topcanvas.addEventListener ("click", function () {
+    star_field(context, event);
+  }, false);
+
+  // restore the previous context state
+  context.restore();
+}
+
+init();
+
+</script>
+
+
 
 <h2>Merry Christmas!</h2>
 
@@ -98,9 +177,9 @@ ul li ul {
 <div id="snow">
 </div>
 
-<div id="canvas-container">
 
-</div>
+
+
 
 <script>
 var Fireworks = function(){
@@ -735,22 +814,18 @@ gui.remember(fworks);
 						<slidertext style="color:MediumSeaGreen;">Chant
 						<input type="range" onchange="changegain(4,this.value)"  min="0" max="100" value="70"  class="slider" id="ChantCtrl"></input></slidertext>
 						</div>
-						<div>
-						<slidertext style="color:White;">Carol
-						<input type="range" onchange="changegain(5,this.value)"  min="0" max="100" value="20"  class="slider" id="CarolCtrl"></input></slidertext>
-						</div>
 					</div>
 </div>
 
 <div style = "position : absolute; top:100%; z-index : 40;" >
-<p style = "font-family : 'Alegreya SC' ; color:Azure;">This is a Background Noise Customizer with christmas theme. <br> Put cursor over the control button at left bottom. Customize your own ASMR!<p>
+<p style = "font-family : 'Athiti',sans-serif ;font-weight:light;  font-size:18px; color:Gray;margin-left:15px;">Background Noise Customizer with christmas theme. <br>Put cursor over the control button at left bottom. Customize your own ASMR!<p>
 	<ul>
 		<li>
-			<p >[See Reference]</p>
+			<p  style = "font-family : 'Athiti',sans-serif ;font-weight:light;  font-size:18px; color:Gray;">[See Reference]</p>
 			<ul>
-				<p style = "font-size: 14px">Audio sources<br><br>
+				<p  style = "font-family : 'Athiti',sans-serif ;font-weight:light;  font-size:14px; color:Azure; margin-left:30px;">Audio sources<br><br>
    &nbsp;&nbsp; http://www.salamisound.com/<br>
-   &nbsp;&nbsp; http://gregorianchant.altervista.org/<br>
+   &nbsp;&nbsp; http://gregorianchant.altervista.org/<br><br>
 Image sources<br>
    &nbsp;&nbsp; https://wall.alphacoders.com/
 <br><br>
@@ -758,11 +833,13 @@ Some codes are from
 <br>
    &nbsp;&nbsp; https://codepen.io/NickyCDK/pen/AIonk?q=snow&limit=all&type=type-pens
 <br>   &nbsp;&nbsp; https://codepen.io/jackrugile/pen/acAgx?q=firework&order=popularity&depth=everything&show_forks=false
+<br>   &nbsp;&nbsp; https://codepen.io/iblamefish/pen/xgefG?depth=everything&order=popularity&page=3&q=stars&show_forks=false
 <br>
 <br><br>
 Merry Christmas!</p>
 
 
 </div>
+
 </body>
 </html>
