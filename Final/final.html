@@ -9,7 +9,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="https://jackrugile.com/lab/fireworks-v2/js/dat.gui.min.js"></script>
 	<script src="play3.js"></script>
-
+  <llink href='http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css' rel='stylesheet'>
 </head>
 
 <style>
@@ -22,6 +22,7 @@
 		bottom:2%;
     text-align: right;
     padding: 20px;
+
 }
 body, html {
     height: 100%;
@@ -51,7 +52,7 @@ h2{
 	  position:fixed;
 		top:0;
 		left:2%;
-    font-family: 'Alegreya SC';font-size: 22px;
+    font-family: 'Alegreya SC';font-size: 12px;
 		color : Darkred;
 }
 
@@ -171,7 +172,7 @@ init();
 
 
 
-<h2>Merry Christmas!</h2>
+<h2>Merry Christmas! by Jihu Moon</h2>
 
 
 <div id="snow">
@@ -818,28 +819,93 @@ gui.remember(fworks);
 </div>
 
 <div style = "position : absolute; top:100%; z-index : 40;" >
-<p style = "font-family : 'Athiti',sans-serif ;font-weight:light;  font-size:18px; color:Gray;margin-left:15px;">Background Noise Customizer with christmas theme. <br>Put cursor over the control button at left bottom. Customize your own ASMR!<p>
+<p style = "font-family : 'Athiti',sans-serif ;font-weight:light;  font-size:18px; color:Gray;margin-left:15px;">Background Noise Customizer with christmas theme. <br>Put cursor over the control button at left bottom. Customize your own ASMR!
+ <br></p>
+ <p style = "font-family:'Athiti', sans-serif ; font-weight:light; font-size:15px; color:silver;margin-left:18px;">[How to]<br>1. Press [F11] to see with fullscreen.<br>2. Adjust volumes properly.<br>3. Write a letter and play it. <br>4. Enjoy :)<br>p.s. It creates fireworks and leaves stars when you click on the sky</p>
+	<p>
 	<ul>
 		<li>
 			<p  style = "font-family : 'Athiti',sans-serif ;font-weight:light;  font-size:18px; color:Gray;">[See Reference]</p>
 			<ul>
-				<p  style = "font-family : 'Athiti',sans-serif ;font-weight:light;  font-size:14px; color:Azure; margin-left:30px;">Audio sources<br><br>
+				<p  style = "font-family : 'Athiti',sans-serif ;font-weight:light;  font-size:10px; color:Azure; margin-left:30px;">[Audio sources]<br>
    &nbsp;&nbsp; http://www.salamisound.com/<br>
-   &nbsp;&nbsp; http://gregorianchant.altervista.org/<br><br>
-Image sources<br>
+   &nbsp;&nbsp; http://gregorianchant.altervista.org/<br>
+[Image sources]<br>
    &nbsp;&nbsp; https://wall.alphacoders.com/
-<br><br>
-Some codes are from
+<br>
+[Some codes are from]
 <br>
    &nbsp;&nbsp; https://codepen.io/NickyCDK/pen/AIonk?q=snow&limit=all&type=type-pens
 <br>   &nbsp;&nbsp; https://codepen.io/jackrugile/pen/acAgx?q=firework&order=popularity&depth=everything&show_forks=false
 <br>   &nbsp;&nbsp; https://codepen.io/iblamefish/pen/xgefG?depth=everything&order=popularity&page=3&q=stars&show_forks=false
 <br>
-<br><br>
+<br>
 Merry Christmas!</p>
 
 
 </div>
+<div  style = "position : absolute; top:110%; right:5%; z-index : 40; margin-bottom:10px;">
+  <textarea  id="letter" type='text' cols="70" rows="8"  style="width:580px; height:200px; background-color:Gainsboro  ; color:Black; " >Write a letter to your loved ones. :) And then click [Play Letter] button.</textarea>
+
+  <button type="button" onclick="myFunction()" style="z-index:2000">Play Letter</button>
+
+</div>
+
+<canvas id='letterplace' width='800' height='100' style='position:absolute; top:10%; left:5%;'></canvas>
+<script>
+
+function myFunction(){
+	var canvas = document.getElementById('letterplace');
+	var ctx = canvas.getContext('2d');
+	ctx.font = '20px nanummyeongjo';
+  var letter;
+  var i=0;
+  var paper= document.getElementById("demo");
+  letter = document.getElementById("letter").value;
+  result=letter.split(/\r?\n/);
+	result.push(" ");
+
+console.log(result);
+	function inc(){
+		i++;
+	};
+
+	i = 0;
+	ctx.clearRect (0, 0, canvas.width, canvas.height );
+	ctx.fillStyle = "GhostWhite";
+	ctx.textAlign = "left";
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.fillText(result[i],40, canvas.height/2);
+	$(document).ready(function(){
+			$("#letterplace").fadeOut(0);
+			$("#letterplace").fadeIn(4000);
+			$("#letterplace").delay(2000);
+			$("#letterplace").fadeOut(2000);
+			});
+   setInterval(function() {
+   i++;
+   if (i < result.length) {
+		 ctx.clearRect (0, 0, canvas.width, canvas.height );
+		 ctx.fillStyle = "GhostWhite";
+		 ctx.textAlign = "left";
+		 ctx.fillText(result[i],40, canvas.height/2);
+		 ctx.fillText(result[i+1],70, canvas.height/2+30);
+		 $(document).ready(function(){
+				 $("#letterplace").fadeIn(4000);
+				 $("#letterplace").delay(5000);
+				 $("#letterplace").fadeOut(2000);
+			  });
+
+   }
+	 i++;
+ }, 11000);
+
+
+
+		};
+
+
+	</script>
 
 </body>
 </html>
