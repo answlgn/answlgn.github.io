@@ -2,10 +2,11 @@
 <head>
 	<title>Merry Christmas :: Jihu Moon</title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link href='https://fonts.googleapis.com/css?family=Alegreya SC' rel='stylesheet'>
+	<link href='https://fonts.googleapis.com/css?family=Alegreya%20SC' rel='stylesheet'>
 	<link  href="slider.css" rel='stylesheet'>
   <link  href="snow2.css3" rel='stylesheet'>
 	<link  href="firework.css" rel='stylesheet'>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="https://jackrugile.com/lab/fireworks-v2/js/dat.gui.min.js"></script>
 	<script src="play3.js"></script>
@@ -52,7 +53,7 @@ h2{
 	  position:fixed;
 		top:0;
 		left:2%;
-    font-family: 'Alegreya SC';font-size: 12px;
+    font-family: 'Alegreya SC';font-size: 15px;
 		color : Darkred;
 }
 
@@ -80,6 +81,56 @@ ul li ul {
 	 left:2%;
 	 bottom: 36px;
 	 z-index:100;
+}
+
+.button-two{
+	font-family:Arial;
+	font-weight: bold;
+	font-variant: small-caps;
+	color:#fbf5ce;
+	opacity:0.8;
+  text-align: center;
+  cursor: pointer;
+  font-size:15px;
+  margin: 0 0 0 0px;
+}
+
+
+/*Button Two*/
+.button-two {
+  border-radius: 0px;
+  background-color:#d35400;
+  border: none;
+  padding: 0px;
+  width: 80px;
+	height: 36px;
+  transition: all 0.5s;
+}
+
+
+.button-two span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button-two span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button-two:hover span {
+  padding-right: 15px;
+}
+
+.button-two:hover span:after {
+  opacity: 1;
+  right: 0px;
 }
 
 
@@ -172,7 +223,7 @@ init();
 
 
 
-<h2>Merry Christmas! by Jihu Moon</h2>
+<h2 style='opacity:0.5;'>Merry Christmas! by Jihu Moon</h2>
 
 
 <div id="snow">
@@ -819,15 +870,17 @@ gui.remember(fworks);
 </div>
 
 <div style = "position : absolute; top:100%; z-index : 40;" >
-<p style = "font-family : 'Athiti',sans-serif ;font-weight:light;  font-size:18px; color:Gray;margin-left:15px;">Background Noise Customizer with christmas theme. <br>Put cursor over the control button at left bottom. Customize your own ASMR!
+<p style = "font-family : 'Arial',sans-serif ;font-weight:light;  font-size:18px; color:Gray;margin-left:15px;font-weight:bold;">Background Noise Customizer with christmas theme. <br>Put cursor over the control button at left bottom. Customize your own ASMR!
  <br></p>
- <p style = "font-family:'Athiti', sans-serif ; font-weight:light; font-size:15px; color:silver;margin-left:18px;">[How to]<br>1. Press [F11] to see with fullscreen.<br>2. Adjust volumes properly.<br>3. Write a letter and play it. <br>4. Enjoy :)<br>p.s. It creates fireworks and leaves stars when you click on the sky</p>
+ <p style = "font-family:'Arial', sans-serif ; font-weight:light; font-size:15px; color:silver;margin-left:18px;">[How to]<br>1. Press [F11] to see with fullscreen.<br>2. Adjust volumes properly.<br>3. Write a letter and play it. <br>4. Enjoy :)
+	 <br>&nbsp;&nbsp;p.s. It creates fireworks and leaves stars as you click on the sky
+ <br>&nbsp;&nbsp;If there's something wrong with playing words or fireworks do not work, just [F5] to refresh ;)</p>
 	<p>
 	<ul>
 		<li>
-			<p  style = "font-family : 'Athiti',sans-serif ;font-weight:light;  font-size:18px; color:Gray;">[See Reference]</p>
+			<p  style = "position:absolute; left:20%;font-family : 'Arial',sans-serif ;font-weight:light;  font-size:12px; color:Gray;">[See Reference]</p>
 			<ul>
-				<p  style = "font-family : 'Athiti',sans-serif ;font-weight:light;  font-size:10px; color:Azure; margin-left:30px;">[Audio sources]<br>
+				<p  style = "font-family : 'Arial',sans-serif ;font-weight:light;  font-size:10px; color:Azure; margin-left:30px;">[Audio sources]<br>
    &nbsp;&nbsp; http://www.salamisound.com/<br>
    &nbsp;&nbsp; http://gregorianchant.altervista.org/<br>
 [Image sources]<br>
@@ -844,17 +897,22 @@ Merry Christmas!</p>
 
 
 </div>
-<div  style = "position : absolute; top:110%; right:5%; z-index : 40; margin-bottom:10px;">
-  <textarea  id="letter" type='text' cols="70" rows="8"  style="width:580px; height:200px; background-color:Gainsboro  ; color:Black; " >Write a letter to your loved ones. :) And then click [Play Letter] button.</textarea>
+<div  style = "position : absolute; top:100%; right:0%; z-index : 40; margin-bottom:0%;">
+	<button class="button-two" onclick="Playletter()" style="background-color: Maroon;z-index:2000; position:absolute; top:0%;left:-80px"><span>Play Letter</span></button>
+	<button class="button-two" onclick="Playpoem()" style="z-index:2000;position:absolute; background-color:#003300;top:36px;left:-80px"><span>Poem</span></button>
+  <textarea  id="letter" type='text' cols="70" rows="8"  style="width:580px; height:256px; background-color:#212314 ; color:GhostWhite;border:none;font-family:Palatino Linotype;font-size:15px;opacity:0.9; " >Write a letter to your loved ones. :) And then click [Play Letter] button.</textarea>
 
-  <button type="button" onclick="myFunction()" style="z-index:2000">Play Letter</button>
 
 </div>
 
 <canvas id='letterplace' width='800' height='100' style='position:absolute; top:10%; left:5%;'></canvas>
 <script>
+function isEven(n) {
+   return n % 2 == 0;
+}
 
-function myFunction(){
+function Playletter(){
+
 	var canvas = document.getElementById('letterplace');
 	var ctx = canvas.getContext('2d');
 	ctx.font = '20px nanummyeongjo';
@@ -863,10 +921,12 @@ function myFunction(){
   var paper= document.getElementById("demo");
   letter = document.getElementById("letter").value;
   result=letter.split(/\r?\n/);
-	result.push(" ");
-	result.push(" ");
+	if(isEven(result.length)){
+		result.push(" ");
 
-console.log(result);
+		console.log(result);
+	}
+
 	function inc(){
 		i++;
 	};
@@ -904,7 +964,82 @@ console.log(result);
 
 
 		};
+		function Playpoem(){
 
+			var canvas = document.getElementById('letterplace');
+			var ctx = canvas.getContext('2d');
+			ctx.font = '20px nanummyeongjo';
+		  var poem;
+		  var i=0;
+
+
+		  var poem1 = ['즐거운 편지 - 황동규',  '1. 내 그대를 생각함은 항상 그대가 앉아 있는 배경에서','해가 지고 바람이 부는 일처럼 사소한 일일 것이나', '언젠가 그대가 한없이 괴로움 속을 헤매일 때에',
+			' 오랫동안 전해오던 그 사소함으로 그대를 불러보리라.','2. 진실로 진실로 내가 그대를 사랑하는 까닭은 ','내 나의 사랑을 한없이 잇닿은 그 기다림으로 바꾸어 버린 데 있었다. ',
+			'밤이 들면서 골짜기엔 눈이 퍼붓기 시작했다. ','내 사랑도 어디쯤에선 반드시 그칠 것을 믿는다.',' 다만 그때 내 기다림의 자세를 생각하는 것뿐이다.',
+			' 그 동안에 눈이 그치고 꽃이 피어나고 낙엽이 떨어지고 또 눈이 퍼붓고 할 것을 믿는다.' ,' '];
+			var poem2 = ['편지 - 윤동주', '그립다고 써보니 차라리 말을 말자','그냥 긴 세월이 지났노라고만 쓰자','긴긴 사연을 줄줄이 이어',
+			'진정 못 잊는다는 말을 말고','어쩌다 생각이 났었노라고만 쓰자','그립다고 써보니 차라리 말을 말자','그냥 긴 세월이 지났노라고만 쓰자',
+			'긴긴 잠못 이루는 밤이면','행여 울었다는 말을 말고','가다가 그리울 때도 있었노라고만 쓰자.',' '];
+			var poem3 = ['십자가 - 윤동주','쫒아오던 햇빛인데','지금 교회당 꼭대기에','십자가에 걸리었습니다','尖塔(첨탑)이 저렇게 높은데',
+			'어떻게 올라 갈 수 있을까요','종소리도 들려오지 않는데','휘파람이나 불며 서성거리다가',
+			'괴로웠던 사나이','행복한 예수 그리스도에게 처럼',
+			'십자가가 허락된다면','모가지를 드리우고','꽃처럼 피어나는 피를','어두워가는 하늘 밑에','조용히 흘리겠습니다',' '];
+			var poem4 = ['눈 - 윤동주','지난밤에','눈이 소오복히 왔네','지붕이랑','길이랑 밭이랑','추워한다고','덮어주는 이불인가봐','그러기에','추운 겨울에만 내리지',' '];
+			var poem5 = ['겨울 나무 - 하청호 ','겨울 숲에 서면 ','기도하는 나무를 본다.','잎새의 반짝이는 몸짓도 ','떠나 보내고 ','온갖 풀벌레들의 재잘거림도','비워 버리고 ','떠나간 모든 것들을 위해 ','외곬로만 우러러 기도하는 ','어머니 같은 나무를 본다. ','어쩌다 ',
+			'별빛 고운 날이면 ','흔적만 남은 아이들의 눈망울을 ','별들 속에 헤아리고 ','이제 모든 것을 주어 버리고 ','아무것도 가진 것 없는 ','어머니 같은 나무를 본다. ','이 겨울 ','혼자서 북풍을 맞고 서서 ','기도로 지새우는 ','은혜로 선 겨울 어머니를 본다. ',' '];
+			var poem6 = ['흰 눈 내리는 크리스마스 - 박화목','흰 눈 내리는 크리스마스,','내가 어렸을 그 옛날같이.','초롱불 밝히며 눈길을 걷던','그 발자욱 소리, 지금 들려온다.',
+			'오, 그립고나, 그 옛날에 즐거웠던,','흰 눈을 맞아가면서','목소리를 돋우어 부르던 캐럴','고운 털실 장갑을 통하여, 서로','나누던 따사한 체온.','옛날의','흰 눈 내리는 크리스마스.',' '];
+			var poem7 = ['크리스마스의 추억 - 고은영','어쩌다 친구 꾐에 빠져 ','예배당 관사 높은 지붕에 올라간 ','날 두고 사다리를 치워 버린 ','친구가 원망스러웠을 때 ','혹여 예배당 지붕 위에서 ','이름 없는 귀신이 될까 ','두려움에 겁도 없이 지붕 밑으로 뛰어 ','고공 법을 구사하든 어린 시절 ','할머닌 늘 그랬다 ','"예배당이 니 할애비 집이냐?"라고 ','그러면 나도 속이 상해서 꼬박 ',
+			'"네 할애비 집 맞는데요!" ','되받아치던 유년 ','꼭 크리스마스 즈음만','교회 나간 것은 아니었지만 ','그래도 일 년 중 그때가 가까워지면 ','언제나 예배당을 기웃거렸다 ',
+			'정말 크리스마스에 나눠주던 ','사탕과 따끈한 빵이 ','그리워 간 것은 아니었다 ','여름날은 맨드라미가 ','붉은 얼굴로 깔깔거리고 ','봉선화 채송화도 단아한 모습으로 피어있던 ','그래서 늘 예배당은 내게 많은 ','신비를 지닌 비밀한 정원이었다 ','찬란하게 반짝이는 별이 달린 트리와 ','무대 위 올려지던 다윗 이야기며 ','예수님이 우리를 위해 세상에 오신 ','거룩한 이야기들 ','내 유년의 크리스마스는 항상 ',
+'내게 행복을 선물하는 요람이었다 ','꼭 빵이 그리워 사탕이 그리워 ','예배당을 다닌 것은 아니었다 ',' '];
+
+			poem = [poem1, poem2, poem3, poem4, poem5, poem6, poem7]
+			poem.sort(function(a, b){return 0.5 - Math.random()});
+			var result = poem[0].concat(poem[1],poem[2],poem[3],poem[4],poem[5],poem[6],poem[7]);
+			if(isEven(result.length)){
+				result.push(" ");
+
+				console.log(result);
+			}
+
+			function inc(){
+				i++;
+			};
+
+			i = 0;
+			ctx.clearRect (0, 0, canvas.width, canvas.height );
+			ctx.fillStyle = "GhostWhite";
+			ctx.textAlign = "left";
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+			ctx.fillText(result[i],40, canvas.height/2);
+			$(document).ready(function(){
+					$("#letterplace").fadeOut(0);
+					$("#letterplace").fadeIn(4000);
+					$("#letterplace").delay(2000);
+					$("#letterplace").fadeOut(2000);
+					});
+		   setInterval(function() {
+		   i++;
+		   if (i < result.length) {
+				 ctx.clearRect (0, 0, canvas.width, canvas.height );
+				 ctx.fillStyle = "GhostWhite";
+				 ctx.textAlign = "left";
+				 ctx.fillText(result[i],40, canvas.height/2);
+				 ctx.fillText(result[i+1],70, canvas.height/2+30);
+				 $(document).ready(function(){
+						 $("#letterplace").fadeIn(4000);
+						 $("#letterplace").delay(5000);
+						 $("#letterplace").fadeOut(2000);
+					  });
+
+		   }
+			 i++;
+		 }, 11000);
+
+
+
+				};
 
 	</script>
 
