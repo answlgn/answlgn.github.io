@@ -1,0 +1,84 @@
+<html>
+<head>
+  <link href='https://fonts.googleapis.com/css?family=Work%20Sans' rel='stylesheet'>
+  <br><br><br>
+  <h1 style='text-align : center; color:#C63D0F'>MERRY CHRISTMAS </h1><br><br>
+  <p style="text-indent:0px;"> 20140208 Jihu Moon</p>
+  <p style='text-indent:0px; text-align:right; '><a href="https://answlgn.github.io/Final/final.html" style='text-decoration:none; color:pink;font-size:20px;'>Link to the webpage</a></p>
+</head>
+<style>
+
+body, html {
+    color:#F5F3EE;
+    height: 100%;
+		margin-left:15%;
+    margin-right:15%;
+    font-family: 'Work Sans';
+    background-color: #2B2B2B;
+
+}
+
+h2{
+  text-align:center;
+}
+
+p {
+  text-indent: 20px;
+  text-align: justify;
+}
+
+</style>
+
+  <h2> Introduction</h2>
+  <p>This is basically a webpage that you can create your own background noise. As you see from the background image, sounds are related to night street of downtown and church on Christmas Eve. You can control the volume by hovering the panel icon at bottom-left side of the screen. To add some dynamics, I made a snowing effect. Also, fireworks and stars are generated when you click on the night sky. Finally, if you write something on the text panel below the main image and click ‘play letter’ button, the text appears on the night sky, line by line.</p>
+
+  <p>I do not believe in any religion. But I really like that romantic and warm atmosphere of Christmas. I tried to express and share this feeling I have about Christmas, to others. If you show a letter to your loved one under dark, warm lighting, it will give you a romantic experience with calm and sacred background music :D</p>
+<br>
+<h2> Methods</h2>
+<h3>Volume control panel</h3>
+
+<p>  It’s kind of similar to what I’ve done for homework. I made the structure with html and css. And connected with javascript file ‘player3.js’ to play sounds automatically and control volumes. For sounds, I chose some sounds related to the background image. (firework, church bells, crowd, bonfire and Gregorian Chant) Gregorian chant is the ‘core’ sound for peaceful and romantic atmosphere.
+</p><br>
+  <h3> Letter</h3>
+  <p>It takes text input and splits by line, into an array. Then it adds element text of the array to a transparent canvas using ‘fillText’ method. I used an if statement to count the number of lines, and jquery to fade in and fade out the canvas element.
+Some people may not be diligent enough to write a letter by themselves. So I created a ‘Poem’ button. It automatically plays famous poems. (mostly related to winter and Christmas, and some are my favorites) I currently wrote seven poems and they are played in a random order.
+</p><br>
+<h3>Firework  <a href="https://codepen.io/jackrugile/pen/acAgx?q=firework&order=popularity&depth=everything&show_forks=false" style='text-decoration:none; color:Darkgray;font-size:13px;'>Link to reference</a></h3>
+
+<p>I got it from
+
+It uses jquery. Originally, this code enables you to customize many attributes(velocity, number of particles, …), but I fixed them to certain values make it simple. It still has some weak randomness about some attributes like launch speed, colors.
+</p><br>
+<h3>Stars  <a href="https://codepen.io/iblamefish/pen/xgefG?depth=everything&order=popularity&page=3&q=stars&show_forks=false" style='text-decoration:none; color:Darkgray;font-size:13px;'>Link to reference</a></h3>
+
+<p>
+
+As you see from the link, this is originally ‘random night sky gerenator’. I needed an effect that creates stars at the position of cursor, when you click on the mouse. I thought I could use and modify this reference for my purpose.
+The size of stars are random in the range that I set. Colors are also random between three colors, same as the original code.
+</p><br>
+<h3>Snowing  <a href="https://codepen.io/NickyCDK/pen/AIonk?q=snow&limit=all&type=type-pens" style='text-decoration:none; color:Darkgray; text-align:right;font-size:13px;'>Link to reference</a></h3>
+
+  <p>
+
+    I applied a snowing effect from the reference.
+It is a pure css3 file that simply moves three snow images according to time.
+</p>
+<br>
+<p>
+And I got other resources like background image, sounds from<br><p style='text-align:center'>
+https://wall.alphacoders.com/<br>
+http://gregorianchant.altervista.org/<br>
+http://www.salamisound.com/<br></p>
+</p>
+<br>
+<h2 style = "margin-bottom:5px;">TODO<p style='font-size:15px; text-align:right;'>- about limitations and technical difficulties</p></h2>
+<p style='text-indent:0px;'>1) I don’t know why, but when you load the page, firework does not work with pretty high percentage. I want to find out why and fix it.
+<br><br>
+2) Position of volume control panel icon is ‘fixed’ on screen. I tried to make it ‘absolute’ but failed it because it’s related with hovering issue.
+<br><br>
+3) Want to add some English poems with another button.
+<br><br>
+4) Background image is a real photo of Mariazell, Austria. I definitely wanna go this place.<br><br><br>
+</p><br><br>
+</body>
+</html>
